@@ -1,0 +1,15 @@
+server:
+  port: 8080
+---
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: account
+          uri: http://localhost:8081/
+          predicates:
+            - Path=/api/account/**
+        - id: appointment
+          uri: http://localhost:8082/
+          predicates:
+            - Path=/api/appointment/**

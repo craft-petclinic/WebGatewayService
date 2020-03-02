@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>Show Pet Appointments</title>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<script src="js/lib/angular.min.js"></script>
+<script src="js/lib/ui-bootstrap-tpls-2.5.0.min.js"></script>
+<script src="js/showapointment.js"></script>
+
+<script>
+	$(function() {
+		$("#header").load("header.html");
+		$("#sidenav").load("sidenav.html");
+		$(function() {
+			$("#datepicker").datepicker({
+				changeMonth : true,
+				changeYear : true,
+				maxDate : '0'
+			});
+		});
+	});
+</script>
+</head>
+<body ng-app="clinic">
+	<div id="header"></div>
+	<div id="sidenav"></div>
+
+	<div class="main" ng-controller="showappointment">
+		<form id="petsearchform" name="petsearchform" ng-submit="findPet()">
+			<table>
+				<tr>
+					<td>Pet Name</td>
+					<td><input ng-model="petname" type="text" required></td>
+				</tr>
+				<tr>
+					<td>Pet Dob</td>
+					<td><input type="text" id="datepicker" ng-model="petdob"
+						required></td>
+				</tr>
+				<tr>
+					<td><input class="button" type="submit" id="submit"
+						value="Search" /></td>
+				</tr>
+			</table>
+		</form>
+		<table id="pettable" ng-show="pets.length">
+			<thead>
+				<tr id='head'>
+					<!-- <th scope="Row">Select</th> -->
+					<th style="display: none;">id</th>
+					<th>Pet Name</th>
+					<th>Pet DOB</th>
+					<th>Owner Name</th>
+					<th>Owner Address</th>
+					<th>.......</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="petObj in pets">
+					<th style="display: none;">{{petObj.id}}</th>
+					<td>{{ petObj.name }}</td>
+					<td>{{ petObj.dob }}</td>
+					<td>{{ petObj.ownerFirstName}} {{petObj.ownerLastName}}</td>
+					<td>{{ petObj.street }} , {{ petObj.city }}, {{ petObj.state
+						}}</td>
+					<td><input type="button" value="Show Appointmments"
+						class="button" ng-click="showPetAppointments(petObj.id)"></td>
+				</tr>
+			</tbody>
+		</table>
+		<div id="space">
+			<br>
+			<hr>
+		</div>
+		<table id="showApptable" ng-show="petappoints.length">
+			<thead>
+				<tr id='head'>
+					<th style="display: none;">id</th>
+					<th>Pet Name</th>
+					<th>Vet Name</th>
+					<th>Appointment Date</th>
+					<th>Duration</th>
+					<th>Appointment Status</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="petAppObj in petappoints">
+					<th style="display: none;">{{petAppObj.id}}</th>
+					<td>{{ petAppObj.petName }}</td>
+					<td>{{ petAppObj.vetName }}</td>
+					<td>{{ petAppObj.appointmentDate | date:'yyyy-MM-dd HH:mm'}}</td>
+					<td>30 Minutes</td>
+					<td>{{petAppObj.status}}</td>
+					<td>
+						<div ng-if="petAppObj.status =='booked'">
+							<button class="button" ng-click="cancelAppointment(petAppObj.id)">
+								Cancel Appointments</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

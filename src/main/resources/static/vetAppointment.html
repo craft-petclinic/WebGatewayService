@@ -1,0 +1,99 @@
+<html>
+<head>
+<title>Show Vet Appointments</title>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<script src="js/lib/angular.min.js"></script>
+<script src="js/lib/ui-bootstrap-tpls-2.5.0.min.js"></script>
+<script src="js/showapointment.js"></script>
+
+<script>
+	$(function() {
+		$("#header").load("header.html");
+		$("#sidenav").load("sidenav.html");
+	});
+</script>
+</head>
+<body ng-app="clinic">
+	<div id="header"></div>
+	<div id="sidenav"></div>
+
+	<div class="main" ng-controller="showappointment">
+		Find a Vet :
+
+		<form id="vetsearchform" name="vetsearchform" ng-submit="findVet()">
+			<table>
+				<tr>
+					<td>Vet Name</td>
+					<td><input ng-model="vetname" type="text" required></td>
+				</tr>
+				<tr>
+					<td><input type="submit" class="button" id="submit"
+						value="Search" /></td>
+				</tr>
+			</table>
+		</form>
+		OR
+
+		<form id="vetsearchform" name="vetsearchform" ng-submit="showAllVet()">
+			<input type="submit" class="button" id="submit" value="Show All Vet" />
+		</form>
+
+		<table id="vettable" ng-show="vets.length">
+			<thead>
+				<tr id='head'>
+					<th style="display: none;">id</th>
+					<th>Vet Name</th>
+					<th>Contact</th>
+					<th>Email Id</th>
+					<th>........</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="vetObj in vets">
+					<th style="display: none;">{{vetObj.id}}</th>
+					<td>{{vetObj.name }}</td>
+					<td>{{vetObj.contact }}</td>
+					<td>{{vetObj.emailId}}</td>
+					<td><input type="button" value="Show Appointmments"
+						class="button" ng-click="showVetAppointments(vetObj.id)"></td>
+				</tr>
+			</tbody>
+		</table>
+		<div id="space">
+			<br>
+			<hr>
+		</div>
+		<table id="showApptable" class="appointlist"
+			ng-show="vetappoints.length">
+			<thead>
+				<tr id='head'>
+					<th style="display: none;">id</th>
+					<th>Vet Name</th>
+					<th>Pet Name</th>
+					<th>Appointment Date</th>
+					<th>Duration</th>
+					<th>Appointment Status</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="vetAppObj in vetappoints">
+					<th style="display: none;">{{vetAppObj.id}}</th>
+					<td>{{vetAppObj.vetName }}</td>
+					<td>{{vetAppObj.petName }}</td>
+					<td>{{vetAppObj.appointmentDate | date:'yyyy-MM-dd HH:mm'}}</td>
+					<td>30 Minutes</td>
+					<td>{{vetAppObj.status}}</td>
+					<td>
+						<div ng-if="vetAppObj.status =='booked'">
+							<input type="button" value="Cancel Appointmments" class="button"
+								ng-click="cancelAppointment(vetAppObj.id)">
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

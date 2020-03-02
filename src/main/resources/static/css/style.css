@@ -1,0 +1,82 @@
+body {
+	font-family: "Lato", sans-serif;
+}
+
+/* Main content */
+.main {
+	margin-left: 200px; /* Same as the width of the sidenav */
+	font-size: 20px; /* Increased text to enable scrolling */
+	padding: 0px 10px;
+	margin-top: 75px;
+}
+
+input[type="text"] {
+	width: 200px;
+}
+
+#errormsg {
+	color: red;
+	font-size: 15px;
+}
+
+#errorDetail {
+	color: red;
+	font-size: 10px;
+}
+
+#success {
+	color: green;
+	font-size: 15px;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td {
+	padding: 8px;
+	text-align: left;
+}
+
+/* .appointlist th, td {
+	border-bottom: 1px solid #ddd;
+} */
+
+/* tr:nth-child(even){background-color: #f2f2f2} */
+th {
+	background-color: #001f3f;
+	color: white;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+	float: left;
+	width: 50%;
+	padding: 10px;
+	height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.button {
+  background-color: #001f3f;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
