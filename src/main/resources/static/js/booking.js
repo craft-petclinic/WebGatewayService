@@ -36,7 +36,6 @@ angular.module('clinic', [])
 
 					$scope.bookappoint = function() {
 						var time  = document.getElementById("timepicker").value;
-						alert("time" + time);
 						var datetime = $scope.datechoosed + " " + time;
 						var deadline = new Date(datetime).getTime();
 						$scope.booking.appointmentDate = deadline;

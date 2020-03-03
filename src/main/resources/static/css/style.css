@@ -61,6 +61,14 @@ th {
 	height: 300px; /* Should be removed. Only for demonstration */
 }
 
+.column1 {
+	float: left;
+	width: 50%;
+	padding: 10px;
+	height: 300px;
+	//background-color: #F5F5F5; /* Should be removed. Only for demonstration */
+}
+
 /* Clear floats after the columns */
 .row:after {
 	content: "";
@@ -79,4 +87,10 @@ th {
   font-size: 14px;
   margin: 4px 2px;
   cursor: pointer;
+}
+
+
+label.required::after {
+  content: " *";
+  color: red;
 }

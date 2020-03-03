@@ -15,14 +15,20 @@
 		$("#header").load("header.html");
 		$("#sidenav").load("sidenav.html");
 		
-		 $( "#datepicker" ).datepicker({ minDate: 0 ,beforeShowDay: $.datepicker.noWeekends});
+		 $( "#datepicker" ).datepicker({ 
+			 changeMonth : true,
+			 changeYear : true,
+			 minDate: 0 ,beforeShowDay: $.datepicker.noWeekends});
 		 $('#timepicker').timepicker({
 			 timeFormat: 'HH:mm',
 			 minTime:"08:00",
 			 maxTime:"16:30"
 		 });
 		 
-		 $( "#petdatepicker" ).datepicker({ maxDate: 0});
+		 $( "#petdatepicker" ).datepicker({ 
+			 changeMonth : true,
+			 changeYear : true,
+			 maxDate: 0});
 		
 	});
 </script>
@@ -38,12 +44,12 @@
 				<form id="bookingform" name="bookingform" ng-submit="bookappoint()">
 					<table>
 						<tr>
-							<td>Pet ID</td>
+							<td><label class = "required">Pet ID</label></td>
 							<td><input type="text" id="petId" ng-model="booking.petId"
 								required></td>
 						</tr>
 						<tr>
-							<td>Vet ID</td>
+							<td><label class = "required">Vet ID</label></td>
 							<td><input type="text" id="vetId" ng-model="booking.vetId"
 								required></td>
 						</tr>
@@ -53,9 +59,9 @@
 							</tr>
 							<tr>
 							<td><input type="hidden" ng-model="booking.appointmentDate"></input>
-								Date : <input id="datepicker" ng-model="datechoosed" type="text"
+								<label class = "required">Date</label> <input id="datepicker" ng-model="datechoosed" type="text"
 								required></td>
-							<td>Time : <input id="timepicker" ng-model="timechoosed"
+							<td><label class = "required">Time</label><input id="timepicker" ng-model="timechoosed"
 								type="text" required></td>
 						</tr>
 						<tr>
@@ -71,16 +77,16 @@
 			</div>
 
 
-			<div class="column">
+			<div class="column1">
 				Find a Pet :
 				<form id="petsearchform" name="petsearchform" ng-submit="findPet()">
 					<table>
 						<tr>
-							<td>Pet Name</td>
+							<td><label class = "required">Pet Name</label></td>
 							<td><input ng-model="petname" type="text" required></td>
 						</tr>
 						<tr>
-							<td>Pet Dob</td>
+							<td><label class = "required">Pet Dob</label></td>
 							<td><input type="text" id="petdatepicker" ng-model="petdob"
 								required></td>
 						</tr>
@@ -117,7 +123,7 @@
 				<form id="vetsearchform" name="vetsearchform" ng-submit="findVet()">
 					<table>
 						<tr>
-							<td>Vet Name</td>
+							<td><label class = "required">Vet Name</label></td>
 							<td><input ng-model="vetname" type="text" required></td>
 						</tr>
 						<tr>
